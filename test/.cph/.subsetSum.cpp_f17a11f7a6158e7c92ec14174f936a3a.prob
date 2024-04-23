@@ -1,0 +1,1 @@
+{"name":"Local: subsetSum","url":"e:\\COMPETITIVE_PROGRAMMING\\test\\subsetSum.cpp","tests":[{"id":1671039213309,"input":"5 20\n5 15 3 17 12","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\COMPETITIVE_PROGRAMMING\\test\\subsetSum.cpp","group":"local","local":true}

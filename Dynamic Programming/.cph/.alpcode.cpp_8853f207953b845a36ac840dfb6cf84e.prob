@@ -1,0 +1,1 @@
+{"name":"Local: alpcode","url":"e:\\COMPETITIVE_PROGRAMMING\\Dynamic Programming\\alpcode.cpp","tests":[{"id":1670340573164,"input":"25114\n1111111111\n3333333333\n0","output":"25114\n1111111111\n3333333333\n0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\COMPETITIVE_PROGRAMMING\\Dynamic Programming\\alpcode.cpp","group":"local","local":true}

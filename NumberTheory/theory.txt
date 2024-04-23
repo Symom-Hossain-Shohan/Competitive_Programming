@@ -1,0 +1,9 @@
+Diophantine equation: 
+    ax + by = c
+    gcd(a, b) | c 
+    => integer solution for x and y exists 
+
+Euler Toitient Function: 
+    Q(n) = Number of 'm' such that
+    1<=m<n and gcd(m, n) = 1
+    Q(ab) = Q(a) * Q(b) given gcd(a, b) = 1
