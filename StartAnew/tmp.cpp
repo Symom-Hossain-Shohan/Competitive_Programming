@@ -1,74 +1,50 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const ll mod=1e9+7;
-const ll MX=2e5+5;
-inline void norm(ll &a) {a%=mod; (a<0) && (a+=mod) ;}                            //positive mod value
-inline ll modAdd(ll a,ll b) {a%=mod, b%=mod; norm(a),norm(b); return (a+b)%mod;} //modular addition
-inline ll modSub(ll a,ll b) {a%=mod, b%=mod; norm(a),norm(b); return (a-b)%mod;} //modular subtraction
-inline ll modMul(ll a,ll b) {a%=mod, b%=mod; norm(a),norm(b); return (a*b)%mod;} //modular multiplication
-inline ll bigMod(ll b,ll p)  {ll r=1; while(p) {if(p & 1LL) r=modMul(r,b) ;b=modMul(b,b) ; p>>=1LL ; } return r; }
-inline ll modInverse(ll a) {return bigMod(a,mod-2); }
-inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
+const int MX = 5e5+9;
 
-class Solution {
-public:
-    int compress(vector<char>& chars) {
-        vector<char> res;
-        int cnt = 0, ans = 0;
-        char c = chars[0];
-        for (int i = 0; i < (int)chars.size(); i++) {
-            if (chars[i] == c) {
-                cnt++;
-            } else {
-                if (cnt > 1) {
-                    ans += 2;
-                    res.push_back(c);
-                    string s = to_string(cnt); 
-					for(auto it: s) res.push_back(it); 
-					
-                } else {
-                    ans++;
-                    res.push_back(c);
-                }
-                c = chars[i], cnt = 1;
-            }
-        }
-        if (cnt > 1) {
-            ans += 2;
-            res.push_back(c);
-            string s = to_string(cnt); 
-			for(auto it: s) res.push_back(it); 
-        } else {
-            ans++;
-            res.push_back(c);
-        }
+int st[4*MX];
 
-        for (int i = 0; i <(int) res.size(); i++)
-            chars[i] = res[i];
-        return ans;
+void update(int id, int b, int e, int i, int val) {
+    if(i < b || e < i) return;
+    if(b == i && e == i) {
+        st[id] = max (st[id], val);
+        return;
     }
-};
-
-void solve()
-{
-	Solution s; 
-	vector<char> chars = {'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'};	
-	cout << s.compress(chars) << endl; 
-	for(auto i: chars) cout << i << endl; 
-
+    int mid = (b+e) / 2, l_id = 2*id, r_id = l_id + 1;
+    update(l_id,b,mid,i,val);
+    update(r_id,mid+1,e,i,val);
+    st[id] = max (st[l_id], st[r_id]);
 }
 
-int main()
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	ll tc = 1;
-	//cin >> tc;
-	for (ll t = 1; t <= tc; t++)
-	{
-		solve();
-	}
-	return 0;
+int query(int id, int b, int e, int i, int j) {
+    if(j < b || e < i) return 0;
+    if(b >= i && e <= j) return st[id];
+    int mid = (b+e) / 2, l_id = 2*id, r_id = l_id + 1;
+    return max (query(l_id,b,mid,i,j), query(r_id,mid+1,e,i,j));
+}
+
+
+int32_t main () {
+  cin.tie(0) -> sync_with_stdio(0);
+  int t = 1;
+  cin >> t;
+  while (t--) {
+      int n, mx = 0;
+      cin >> n;
+      int a[n], val[n];
+      int ans[n];
+      for (int i = 0; i < n; i++) {
+          cin >> a[i];
+          mx = max (mx, a[i]);
+          val[i] = mx;
+      }
+      for (int i = 0; i <= 4*n; i++) st[i] = 0;
+      for (int i = n-1; i >= 0; i--) {
+          ans[i] = max (val[i], query(1, 0, n, 0, val[i]-1));
+          update (1, 0, n, a[i], ans[i]);
+      }
+      for (int i = 0; i < n; i++) cout << ans[i] << ' ';
+      cout << "\n";
+  }
 }
