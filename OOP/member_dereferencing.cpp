@@ -42,55 +42,28 @@ inline ll bigMod(ll b, ll p)
 inline ll modInverse(ll a) { return bigMod(a, mod - 2); }
 inline ll modDiv(ll a, ll b) { return modMul(a, modInverse(b)); }
 
-class Solution
-{
-public:
-    int hIndex(vector<int> &citations)
+
+class test{
+    public:
+    int x; 
+    void func()
     {
-        sort(citations.begin(), citations.end());
-        int ans = 0; 
-        int l = 0, r = citations.back();
-
-        while(l<=r)
-        {
-            int mid = (l+r)/2; 
-
-            int l_ = 0, r_ = citations.size()-1;
-            int pos = 0; 
-            while(l_<=r_)
-            {
-                int mid_ = (l_+r_)/2;
-                if(citations[mid_] >= mid)
-                {
-                    pos = mid_;
-                    r_ = mid_-1;
-                }
-                else
-                {
-                    l_ = mid_+1;
-                }
-            }
-
-            if(citations.size()-pos >= mid)
-            {
-                ans = max(ans, mid);
-                l = mid+1;
-            }
-            else
-            {
-                r = mid-1;
-            }
-        }
-
-        return ans;
+        cout << "X " << x << endl;
     }
 };
 
 void solve()
 {
-    Solution s1;
-    vector<int> citations = {10, 11};
-    cout << s1.hIndex(citations) << endl;
+    int test::*ptr; 
+    ptr = &test::x;
+
+    test t;
+    t.x = 5; 
+
+    cout << t.*ptr << endl;  
+
+    t.*ptr = 10;
+    t.func();
 }
 
 int main()

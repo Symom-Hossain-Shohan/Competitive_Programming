@@ -42,55 +42,45 @@ inline ll bigMod(ll b, ll p)
 inline ll modInverse(ll a) { return bigMod(a, mod - 2); }
 inline ll modDiv(ll a, ll b) { return modMul(a, modInverse(b)); }
 
-class Solution
-{
-public:
-    int hIndex(vector<int> &citations)
-    {
-        sort(citations.begin(), citations.end());
-        int ans = 0; 
-        int l = 0, r = citations.back();
-
-        while(l<=r)
-        {
-            int mid = (l+r)/2; 
-
-            int l_ = 0, r_ = citations.size()-1;
-            int pos = 0; 
-            while(l_<=r_)
-            {
-                int mid_ = (l_+r_)/2;
-                if(citations[mid_] >= mid)
-                {
-                    pos = mid_;
-                    r_ = mid_-1;
-                }
-                else
-                {
-                    l_ = mid_+1;
-                }
-            }
-
-            if(citations.size()-pos >= mid)
-            {
-                ans = max(ans, mid);
-                l = mid+1;
-            }
-            else
-            {
-                r = mid-1;
-            }
-        }
-
-        return ans;
-    }
-};
-
 void solve()
 {
-    Solution s1;
-    vector<int> citations = {10, 11};
-    cout << s1.hIndex(citations) << endl;
+    ll n;
+    cin >> n;
+    vector<ll> v(n);
+
+    for (auto &i : v)
+        cin >> i;
+    sort(v.begin(), v.end());
+
+    ll ans = 1e18;
+    for (int i = 0; i < n - 2; i++)
+    {
+        ll l = i + 2, r = n - 1;
+
+        ll rgt = -1;
+        while (l <= r)
+        {
+            ll mid = (l + r) / 2;
+
+            if (v[i] + v[i + 1] > v[mid])
+            {
+                rgt = mid;
+                l = mid + 1;
+            }
+            else
+                r = mid - 1;
+        }
+
+        // cout << i << ' ' << rgt << endl;
+        if (rgt != -1)
+        {
+            ans = min(ans, n - (rgt - i + 1));
+        }
+    }
+    if (ans == 1e18)
+        cout << n-2 << endl;
+    else
+        cout << ans << endl;
 }
 
 int main()
@@ -98,7 +88,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    // cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();
