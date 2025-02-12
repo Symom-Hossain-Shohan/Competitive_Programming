@@ -2,69 +2,44 @@
 using namespace std;
 
 typedef long long ll;
-const ll mod = 1e9 + 7;
-const ll MX = 2e5 + 5;
-inline void norm(ll &a)
+const ll mod=1e9+7;
+const ll MX=2e5+5;
+inline void norm(ll &a) {a%=mod; (a<0) && (a+=mod) ;}                            //positive mod value
+inline ll modAdd(ll a,ll b) {a%=mod, b%=mod; norm(a),norm(b); return (a+b)%mod;} //modular addition
+inline ll modSub(ll a,ll b) {a%=mod, b%=mod; norm(a),norm(b); return (a-b)%mod;} //modular subtraction
+inline ll modMul(ll a,ll b) {a%=mod, b%=mod; norm(a),norm(b); return (a*b)%mod;} //modular multiplication
+inline ll bigMod(ll b,ll p)  {ll r=1; while(p) {if(p & 1LL) r=modMul(r,b) ;b=modMul(b,b) ; p>>=1LL ; } return r; }
+inline ll modInverse(ll a) {return bigMod(a,mod-2); }
+inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
+
+ll n, k; 
+void fun(ll l, ll r, ll k, ll i, vector<ll> &v)
 {
-    a %= mod;
-    (a < 0) && (a += mod);
-} // positive mod value
-inline ll modAdd(ll a, ll b)
-{
-    a %= mod, b %= mod;
-    norm(a), norm(b);
-    return (a + b) % mod;
-} // modular addition
-inline ll modSub(ll a, ll b)
-{
-    a %= mod, b %= mod;
-    norm(a), norm(b);
-    return (a - b) % mod;
-} // modular subtraction
-inline ll modMul(ll a, ll b)
-{
-    a %= mod, b %= mod;
-    norm(a), norm(b);
-    return (a * b) % mod;
-} // modular multiplication
-inline ll bigMod(ll b, ll p)
-{
-    ll r = 1;
-    while (p)
+    if(i>n) return; 
+    if(k>pow(2, r-l-1))
     {
-        if (p & 1LL)
-            r = modMul(r, b);
-        b = modMul(b, b);
-        p >>= 1LL;
+        v[r] = i; 
+        return fun(l, r-1, (k-pow(2, r-l-1)), i+1, v); 
     }
-    return r;
+    else 
+    {
+        v[l] = i; 
+        return fun(l+1, r, k, i+1, v); 
+    }
 }
-inline ll modInverse(ll a) { return bigMod(a, mod - 2); }
-inline ll modDiv(ll a, ll b) { return modMul(a, modInverse(b)); }
 
 void solve()
 {
-    vector<ll> v = {1, 2, 3, 4, 5, 6};
 
-    do
+    cin >> n >> k; 
+    if(k>pow(2, n-1)) cout << -1 << endl; 
+    else 
     {
-        ll sum = 0;
-        for (int i = 0; i < 6; i++)
-        {
-            for (int j = i + 1; j < 6; j++)
-            {
-                ll x = 1e18;
-                for (int k = i; k <= j; k++)
-                {
-                    x = min(x, v[k]);
-                }
-                sum += x;
-            }
-        }
-        for (auto i : v)
-            cout << i << ' ';
-        cout << "Sum " << sum << endl;
-    } while (next_permutation(v.begin(), v.end()));
+        vector<ll> v(n); 
+        fun(0, n-1, k, 1, v); 
+        for(auto i: v) cout << i << ' '; 
+        cout << endl; 
+    }
 }
 
 int main()
@@ -72,7 +47,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    // cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();
