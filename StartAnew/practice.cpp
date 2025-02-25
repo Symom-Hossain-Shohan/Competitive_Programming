@@ -1,23 +1,59 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-
-void solve()
+class Animal
 {
-    vector<int> v;
-    deque<int> dq; 
-    dq.size(); 
-}
+public:
+    virtual void speak()
+    {
+        cout << "Animal is speaking" << endl;
+    }
+};
+
+class Dog : public Animal
+{
+public:
+    void speak()
+    {
+        cout << "Dog is barking" << endl;
+    }
+};
+
+class Shared
+{
+    static int a;
+    int b;
+
+public:
+    Shared(int i, int j)
+    {
+        a = i, b = j;
+    }
+
+    void print()
+    {
+        cout << a << " " << b << endl;
+    }
+};
+
+int Shared::a;
+
+/**
+ * The main entry point of the program.
+ * It creates an Animal object, calls its speak() method, then creates a Dog object and calls its speak() method.
+ */
 
 int main()
 {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
-    ll tc = 1;
-    //cin >> tc;
-    for (ll t = 1; t <= tc; t++)
-    {
-        solve();
-    }
-    return 0;
+    // Animal *animal = new Animal();
+    // animal->speak();
+
+    // animal = new Dog();
+    // animal->speak();
+
+    Shared X(1, 1);
+    X.print();
+    Shared Y(2, 2);
+    Y.print();
+    X.print();
 }

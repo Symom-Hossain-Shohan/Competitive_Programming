@@ -247,14 +247,60 @@ int main()
 
         vector<vector<string>> res = solve(tmp);
         reverse(res.begin(), res.end());    
-        for(int i=0;i<res.size()-1;i++)
+        
+        for(int i=0; i<res.size(); i++)
         {
-            for(int j=0;j<lastOpen; j++)
+            for(int j=0;j<=lastOpen; j++)   
             {
-                cout << vString[j];
+                cout<<vString[j];
             }
-            // cout << res[i] ; 
-            cout << res.back(); 
+            for(int j=0; j<res[i].size(); j++)
+            {
+                cout<< res[i][j];
+            }
+            for(int j=lastClose; j<vString.size(); j++)
+            {
+                cout<<vString[j];
+            }
+            cout<<endl;
         }
+
+        vector<string> newS;
+        for (int i = 0; i < lastOpen; i++)
+        {
+            newS.push_back(vString[i]);
+        }
+        reverse(res.begin(), res.end());
+        newS.push_back(res[0][0]);
+        for(int i=lastClose+1; i<vString.size(); i++)
+        {
+            newS.push_back(vString[i]);
+        }
+
+        vString = newS;
     }
+    
+    vector<string> newS; 
+    for (int i = 0; i < vString.size(); i++)
+    {
+        if (vString[i] == "(" or vString[i] == ")")
+            continue;
+        newS.push_back(vString[i]);
+    }
+
+    vString = newS;
+    for(auto x: vString) cout<<x;
+
+    cout << endl; 
+    vector<vector<string>> ans = solve(vString);
+    // reverse(ans.begin(), ans.end());
+    for(int i=0; i<ans.size(); i++)
+    {
+        for(int j=0; j<ans[i].size(); j++)
+        {
+            cout<<ans[i][j];
+        }
+        cout<< endl; 
+    }
+        
 }
