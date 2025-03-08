@@ -1,0 +1,1 @@
+{"name":"Local: nfa","url":"e:\\Competitive_Programming\\Compiler-Lab\\nfa.cpp","tests":[{"id":1741430247717,"input":"a\n2\nc\nd\n8\na 0 a\na 0 b\na 1 a\nb 0 b\nb 1 c \nc 0 d\nc 1 c\nc 1 d\n5\n00\n01\n001\n101\n000","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Competitive_Programming\\Compiler-Lab\\nfa.cpp","group":"local","local":true}

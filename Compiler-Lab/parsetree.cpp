@@ -29,7 +29,7 @@ int main()
     rules[{'F', '('}] = "(E)";
 
 
-    string in = "i+ii*i$";
+    string in = "i+i*i$";
     stack<char> st;
     string mathced = "";
     st.push('$');
