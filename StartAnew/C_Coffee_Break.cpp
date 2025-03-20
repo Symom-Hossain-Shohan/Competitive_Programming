@@ -14,7 +14,40 @@ inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
 
 void solve()
 {
-     
+    ll n, m, d; 
+    cin >> n >> m >> d; 
+    set<pair<ll, ll>> q; 
+
+    for(ll i=0;i<n; i++)
+    {
+        ll x;
+        cin >> x;
+        q.insert({x, i});
+    }
+    ll cnt = 1; 
+    vector<ll> ans(n);
+    while (!q.empty())
+    {
+        auto it = q.begin();
+        ll pos = it->second; 
+        ll val = it->first;
+        ans[pos] = cnt;
+        q.erase(it);
+        while (true)
+        {
+            auto it = q.lower_bound({val + d+1, 0});
+            if (it == q.end())
+                break;
+            pos = it->second;
+            val = it->first;
+            ans[pos] = cnt;
+            q.erase(it);
+        }
+        cnt++;
+    }
+    cout << cnt-1 << endl; 
+    for(auto i: ans) cout << i << " ";
+    
 }
 
 int main()
@@ -22,7 +55,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    //cin >> tc;
+    // cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();

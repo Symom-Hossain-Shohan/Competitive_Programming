@@ -14,7 +14,14 @@ inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
 
 void solve()
 {
-     
+    ll n; 
+    cin >> n; 
+    vector<ll> v(n);
+    for(auto &i: v) cin >> i;
+    ll sum = 0; 
+    for(auto i: v) sum += i;
+    sum -= (n-1); 
+    cout << sum << endl;
 }
 
 int main()
@@ -22,7 +29,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    //cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();

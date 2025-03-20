@@ -14,7 +14,14 @@ inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
 
 void solve()
 {
-     
+    ll l, r, d, u; 
+    cin >> l >> r >> d >> u; 
+    ll x = l*l + u*u; 
+    if(l*l + u*u == x and  l*l + d*d == x and d*d + r*r == x and r*r + u*u == x and l+r == u+d) 
+    {
+        cout << "Yes\n"; 
+    }
+    else cout << "No\n"; 
 }
 
 int main()
@@ -22,7 +29,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    //cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();

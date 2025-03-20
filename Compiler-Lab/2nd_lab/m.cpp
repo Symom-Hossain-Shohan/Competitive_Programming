@@ -161,57 +161,57 @@ int main()
     // cout<<code<<endl;
     process(code);
  
-    // cout << "Function: ";
-    // for (auto x : functions)
-    // {
+    cout << "Function: ";
+    for (auto x : functions)
+    {
         
-    //         cout << x << " ";
+            cout << x << " ";
           
-    //     check[x]++;
-    // }
-    // cout << endl;
+        check[x]++;
+    }
+    cout << endl;
    
-    // cout << "Operators: ";
-    // for (auto x : operators)
-    // {
+    cout << "Operators: ";
+    for (auto x : operators)
+    {
        
-    //         cout << x << " ";
+            cout << x << " ";
        
-    // }
-    // cout << endl;
-    // cout << "Data Type: ";
-    // for (auto x : dataTypes)
-    // {
+    }
+    cout << endl;
+    cout << "Data Type: ";
+    for (auto x : dataTypes)
+    {
         
-    //         cout << x << " ";
+            cout << x << " ";
          
-    //         check[x]++;
-    // }
-    // cout << endl;
+            check[x]++;
+    }
+    cout << endl;
    
-    // cout << "Keywords: ";
-    // for (auto x :keywords)
-    // {
+    cout << "Keywords: ";
+    for (auto x :keywords)
+    {
         
-    //         cout << x << " ";
+            cout << x << " ";
           
-    //         check[x]++;
-    // }
-    // cout << endl;
+            check[x]++;
+    }
+    cout << endl;
    
-    // cout << "Others: ";
-    // for (auto x : others)
-    // {
+    cout << "Others: ";
+    for (auto x : others)
+    {
 
         
 
-    //         if(check[x]==0){
-    //             cout << x << " ";
+            if(check[x]==0){
+                cout << x << " ";
              
             
-    //     }
-    // }
-    // cout << endl;
+        }
+    }
+    cout << endl;
     
     
 }

@@ -14,7 +14,36 @@ inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
 
 void solve()
 {
-     
+    ll n, m; 
+    cin >> n >> m; 
+    vector<string> mtx(n);
+    for(ll i = 0; i < n; i++)
+    cin >> mtx[i];
+
+    ll rows = 0; 
+    for(int i=0;i<n; i++)
+    {
+        ll cnt = 0; 
+        for(int j=0;j<m; j++)
+        {
+            if(mtx[i][j] == '1') cnt++; 
+        }
+        if(cnt%2) rows++; 
+    }
+
+    ll cols = 0;
+    for(int i=0;i<m; i++)
+    {
+        ll cnt = 0;
+        for(int j=0;j<n; j++)
+        {
+            if(mtx[j][i] == '1') cnt++;
+        }
+        if(cnt%2) cols++;
+    }
+
+    cout << max(rows, cols) << "\n";
+
 }
 
 int main()
@@ -22,7 +51,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    //cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();

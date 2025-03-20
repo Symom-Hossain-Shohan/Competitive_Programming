@@ -14,7 +14,37 @@ inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
 
 void solve()
 {
-     
+    ll x; 
+    cin >> x;
+
+    if(__builtin_popcount(x)==1 or __builtin_popcount(x+1)==1)
+    {
+        cout << -1 << endl; 
+        return; 
+    }
+
+    ll ans = 0; 
+    ll p = 1; 
+    int zero = 0, one = 0; 
+
+    while(x)
+    {
+        if(x%2==0 and zero==0)
+        {
+            ans += p; 
+            zero = 1;
+        }
+        else if(x%2==1 and one==0)
+        {
+            ans += p;
+            one = 1;
+        }
+        p *= 2;
+        x /= 2;
+    }
+    cout << ans << endl;
+
+
 }
 
 int main()
@@ -22,7 +52,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    //cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();

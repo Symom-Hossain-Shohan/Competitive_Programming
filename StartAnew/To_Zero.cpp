@@ -14,7 +14,43 @@ inline ll modDiv(ll a ,ll b) { return modMul(a,modInverse(b)) ;}
 
 void solve()
 {
-     
+    ll n, k; 
+    cin >> n >> k;
+    if(n%2==0)
+    {
+        k = min(k, n); 
+        if(k%2==1) k--; 
+        cout << (n+k-1)/k << endl; 
+    }
+    else 
+    {
+        k = min(k, n); 
+        if(k%2==1)
+        {
+            n -= k; 
+            if(n==0)
+            {
+                cout << 1 << endl;
+                return;
+            }
+            k = min(n, k); 
+            if(k%2) k--; 
+            cout << (n+k-1)/k + 1<< endl;
+        }
+        else 
+        {
+            k--; 
+            n-=k; 
+            if(n==0)
+            {
+                cout << 1 << endl;
+                return;
+            }
+            k = min(n, k);
+            if(k%2==0) k--;
+            cout << (n+k-1)/k + 1 << endl;
+        }
+    }
 }
 
 int main()
@@ -22,7 +58,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     ll tc = 1;
-    //cin >> tc;
+    cin >> tc;
     for (ll t = 1; t <= tc; t++)
     {
         solve();
